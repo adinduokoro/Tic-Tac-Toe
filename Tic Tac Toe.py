@@ -21,11 +21,11 @@ def print_board(board):
 
 # Taking the users input and displaying it on board
 def user_input(board):
-    spot = int(input(f"Player [{current_player}], pick a spot between 1-9: "))
-    if 1 <= spot <= 9 and board[spot - 1] == "-":
-        board[spot - 1] = current_player
-    else:
-        print("Player is in this spot")
+    while True:
+        spot = int(input(f"Player [{current_player}], pick a spot between 1-9: "))
+        if 1 <= spot <= 9 and board[spot - 1] == "-":
+            board[spot - 1] = current_player
+            break
 
 
 def check_win(board):
