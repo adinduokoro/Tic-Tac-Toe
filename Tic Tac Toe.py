@@ -1,4 +1,6 @@
 # MODS
+import random
+import time
 
 # Global Variables
 board = ["-", "-", "-",
@@ -22,7 +24,7 @@ def print_board(board):
 # Taking the users input and displaying it on board
 def user_input(board):
     while True:
-        spot = int(input(f"Player [{current_player}], pick a spot between 1-9: "))
+        spot = int(input(f"\nPlayer [{current_player}], pick a spot between 1-9: "))
         if 1 <= spot <= 9 and board[spot - 1] == "-":
             board[spot - 1] = current_player
             break
@@ -108,13 +110,37 @@ def play_again():
     else:
         quit_game = False
 
+def cpu_input(board):
+    while True:
+        spot = random.randint(1, 9)
+        if 1 <= spot <= 9 and board[spot - 1] == "-":
+            board[spot - 1] = current_player
+            break
+    print(f"\nPlayer [{current_player}], picked {spot}: ")
+
 
 # main
+while True:
+    response = input("Do you want to play the computer?: ")
+    if response == "yes":
+        cpu = "yes"
+        print("CPU has entered the chat...")
+        break
+    else:
+        cpu = "no"
+        break
+
 while quit_game:
     print_board(board)
     while game_running:
-        user_input(board)
+        if current_player == "X":
+            user_input(board)
+        else:
+            if current_player == "O":
+                if cpu == "yes":
+                    cpu_input(board)
         print_board(board)
+        time.sleep(3)
         check_tie(board)
         check_win(board)
         switch_user()
