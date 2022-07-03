@@ -23,8 +23,7 @@ def print_board(board):
 
 # Taking the users input and displaying it on board
 def user_input(board):
-    while True:
-        spot = int(input(f"\nPlayer [{current_player}], pick a spot between 1-9: "))
+    while spot := int(input(f"\nPlayer [{current_player}], pick a spot between 1-9: ")):
         if 1 <= spot <= 9 and board[spot - 1] == "-":
             board[spot - 1] = current_player
             break
@@ -110,9 +109,9 @@ def play_again():
     else:
         quit_game = False
 
+
 def cpu_input(board):
-    while True:
-        spot = random.randint(1, 9)
+    while spot := random.randint(1, 9):
         if 1 <= spot <= 9 and board[spot - 1] == "-":
             board[spot - 1] = current_player
             break
